@@ -134,6 +134,7 @@
             position: relative;
             z-index: 10;
             min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -141,10 +142,11 @@
         }
 
         .proposal-card {
+            height: 100%;
             background: rgba(26, 10, 20, 0.85);
             backdrop-filter: blur(20px);
             border-radius: 30px;
-            padding: 4rem 3rem;
+            padding: 4rem 1rem;
             max-width: 700px;
             width: 100%;
             box-shadow: 
@@ -247,7 +249,7 @@
 
         .main-heading h1 {
             font-family: 'Libre Baskerville', serif;
-            font-size: 3.5rem;
+            font-size: 1.5rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
             -webkit-background-clip: text;
@@ -296,7 +298,7 @@
             font-size: 1.4rem;
             line-height: 2;
             color: var(--light);
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             font-weight: 300;
         }
 
@@ -339,7 +341,7 @@
         }
 
         .btn {
-            padding: 1.2rem 3rem;
+            padding: 0.5rem 1rem;
             font-family: 'Poppins', sans-serif;
             font-size: 1.3rem;
             font-weight: 600;
@@ -467,6 +469,12 @@
             }
         }
 
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
         /* Responsive design */
         @media (max-width: 768px) {
             .proposal-card {
@@ -523,16 +531,16 @@
             <!-- Main content -->
             <div id="mainContent">
                 <div class="main-heading">
-                    <h1>क्या तुम मेरी बनोगी? 💕</h1>
+                    <h1>अंजलि, क्या तुम मेरी बनोगी? 💕</h1>
                     <p class="subtitle">मेरे दिल की रानी</p>
                 </div>
 
                 <div class="message-section">
                     <div class="heart-icon">❤️</div>
-                    <p>तुम्हारी हंसी में मेरी खुशी है</p>
-                    <p>तुम्हारे साथ में मेरी जिंदगी है</p>
-                    <p>तुम्हारे बिना सब अधूरा है</p>
-                    <p class="highlight">तुम ही मेरी मंजिल हो 💖</p>
+                    <p>अंजलि, तुम्हारे साथ हर पल खास लगता है</p>
+                    <p>तुम्हारी बातें, तुम्हारी हंसी... सब कुछ अच्छा लगता है</p>
+                    <p>मैं हमेशा तुम्हारे साथ रहना चाहता हूँ</p>
+                    <p class="highlight">अंजलि, तुम ही मेरी मंजिल हो 💖</p>
                 </div>
 
                 <div class="button-container">
@@ -641,27 +649,29 @@
             setTimeout(() => createFireworks(), 4000);
         }
 
-        // Handle No button - runs away
+        // Handle No button - just changes text, doesn't move
         function handleNo(button) {
             const messages = [
                 'सोचो मत, हाँ बोलो! 💕',
                 'प्लीज़? 🥺',
                 'मैं इंतज़ार करूँगा... 💖',
                 'तुम जानती हो तुम्हें हाँ बोलना है! 😊',
-                'बस एक हाँ चाहिए! ❤️'
+                'बस एक हाँ चाहिए! ❤️',
+                'अंजलि प्लीज़! 💝',
+                'हाँ बोलो ना! 🌹'
             ];
             
-            button.textContent = messages[Math.floor(Math.random() * messages.length)];
+            const currentIndex = button.dataset.messageIndex || 0;
+            const nextIndex = (parseInt(currentIndex) + 1) % messages.length;
             
-            const maxX = window.innerWidth - button.offsetWidth - 40;
-            const maxY = window.innerHeight - button.offsetHeight - 40;
+            button.textContent = messages[nextIndex];
+            button.dataset.messageIndex = nextIndex;
             
-            const newX = Math.max(20, Math.random() * maxX);
-            const newY = Math.max(20, Math.random() * maxY);
-            
-            button.style.position = 'fixed';
-            button.style.left = newX + 'px';
-            button.style.top = newY + 'px';
+            // Add a little shake animation
+            button.style.animation = 'none';
+            setTimeout(() => {
+                button.style.animation = 'shake 0.5s ease-in-out';
+            }, 10);
         }
 
         // Initialize effects
