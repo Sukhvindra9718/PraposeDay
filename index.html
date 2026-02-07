@@ -647,7 +647,8 @@
             // Continue fireworks for celebration
             setTimeout(() => createFireworks(), 2000);
             setTimeout(() => createFireworks(), 4000);
-            sendNotification()
+            setTimeout(() => sendNotification(), 8000);
+            
         }
 function sendNotification() {
             // ====== OPTION 1: WhatsApp ======
