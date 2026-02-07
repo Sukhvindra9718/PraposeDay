@@ -134,7 +134,6 @@
             position: relative;
             z-index: 10;
             min-height: 100vh;
-            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -142,11 +141,10 @@
         }
 
         .proposal-card {
-            height: 100%;
             background: rgba(26, 10, 20, 0.85);
             backdrop-filter: blur(20px);
             border-radius: 30px;
-            padding: 4rem 1rem;
+            padding: 4rem 3rem;
             max-width: 700px;
             width: 100%;
             box-shadow: 
@@ -249,7 +247,7 @@
 
         .main-heading h1 {
             font-family: 'Libre Baskerville', serif;
-            font-size: 1.5rem;
+            font-size: 3.5rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
             -webkit-background-clip: text;
@@ -298,7 +296,7 @@
             font-size: 1.4rem;
             line-height: 2;
             color: var(--light);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
             font-weight: 300;
         }
 
@@ -341,7 +339,7 @@
         }
 
         .btn {
-            padding: 0.5rem 1rem;
+            padding: 1.2rem 3rem;
             font-family: 'Poppins', sans-serif;
             font-size: 1.3rem;
             font-weight: 600;
@@ -647,10 +645,13 @@
             // Continue fireworks for celebration
             setTimeout(() => createFireworks(), 2000);
             setTimeout(() => createFireworks(), 4000);
-            setTimeout(() => sendNotification(), 8000);
             
+            // Send notification to you
+            sendNotification();
         }
-function sendNotification() {
+
+        // Send notification via WhatsApp or Telegram
+        function sendNotification() {
             // ====== OPTION 1: WhatsApp ======
             // Replace YOUR_PHONE_NUMBER with your number (with country code, no + or spaces)
             // Example: For India +91 9876543210, use: 919876543210
@@ -662,7 +663,7 @@ function sendNotification() {
             // Replace YOUR_USER_ID with your Telegram user ID or username
             // For username (recommended): use @username format
             // Example: const telegramUser = '@yourname';
-            const telegramUser = '@sukhi9643'; // यहाँ अपना @username डालें
+            const telegramUser = '@YOUR_USERNAME'; // यहाँ अपना @username डालें
             const telegramMessage = '🎉 अंजलि ने हाँ बोल दी! 💕 She said YES!';
             
             // This will open Telegram app directly on mobile
@@ -677,8 +678,8 @@ function sendNotification() {
             
             // Telegram के लिए ये uncomment करें:
             // Try to open app first, fallback to web
-            window.location.href = telegramURL;
-            setTimeout(() => { window.location.href = telegramWebURL; }, 1000);
+            // window.location.href = telegramURL;
+            // setTimeout(() => { window.location.href = telegramWebURL; }, 1000);
             
             // ====== ADVANCED: Send to webhook/backend ======
             // If you want to send data to your own server/webhook
@@ -692,6 +693,7 @@ function sendNotification() {
             //     })
             // });
         }
+
         // Handle No button - just changes text, doesn't move
         function handleNo(button) {
             const messages = [
